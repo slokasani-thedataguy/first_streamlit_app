@@ -1,17 +1,8 @@
 import streamlit
-
-# streamlit.title('Learning some new stuff!')
-
-# streamlit.header('GITHUB')
-# streamlit.text('Created account for the first time ever')
-# streamlit.text('Needed it for Snowflake\'s DABW Badge')
-# streamlit.text('It\'s really confusing!')
-# streamlit.text('Will have to alot some time to learn this later since I need it down the line anyway')
-
-# streamlit.header('Streamlit.io')
-# streamlit.text('Created this for for the badge as well!')
-# streamlit.text('Don\'t even know what this was until I read through some high level info')
-# streamlit.text('Was never in to App development. But I guess I\'ll take it up soon')
+import pandas
+import requests
+import snowflake.connector
+from urllib.error import URLError
 
 streamlit.title('My Mom\'s New Healthy Diner')
 
@@ -23,7 +14,6 @@ streamlit.text('🥑🍞 Avocado Toast')
 
 streamlit.header('🍌🥭 Build Your Own Fruit Smoothie 🥝🍇')
 
-import pandas
 my_fruit_list = pandas.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt")
 my_fruit_list = my_fruit_list.set_index('Fruit')
 
@@ -39,7 +29,6 @@ streamlit.header("Fruityvice Fruit Advice!")
 fruit_choice = streamlit.text_input('What fruit would you like information about?','Kiwi')
 streamlit.write('The user entered ', fruit_choice)
 
-import requests
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
 # streamlit.text(fruityvice_response.json()) #Writes data to the screen
 
@@ -48,6 +37,8 @@ fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
 # displays normalized json from previous line
 streamlit.dataframe(fruityvice_normalized)
 
+#caution! maintenance underway!
+streamlit.stop()
 
 import snowflake.connector
 
